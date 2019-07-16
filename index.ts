@@ -1,5 +1,5 @@
 import { of, timer, BehaviorSubject, from } from 'rxjs';
-import { map, tap, switchMap, mergeMap, shareReplay, concatMap, takeUntil, delay, takeWhile, skipWhile } from 'rxjs/operators';
+import { map, tap, switchMap, mergeMap, shareReplay, concatMap, takeUntil, delay, takeWhile, skipWhile , pluck} from 'rxjs/operators';
 import { user } from './data';
 
 let startPage = 0;
@@ -45,10 +45,9 @@ time.pipe(
         skipTime.next(false);
       }
 
-    })
+    }),
+    pluck('user'),
   )
   ),
 
 ).subscribe(data => console.log(data));
-
-
